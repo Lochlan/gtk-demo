@@ -5,17 +5,27 @@ CFLAGS = $(shell pkg-config --cflags --libs gtk+-2.0)
 
 SRCDIR = src
 BUILDDIR = bin
+OBJS = $(patsubst \
+	%.c,\
+	%.o,\
+	$(shell find $(SRCDIR) -type f -name '*.c'))
+PROG = $(BUILDDIR)/$(PROJECT)
 
-all: $(BUILDDIR)/$(PROJECT)
+# targets
+
+all: $(PROG)
 
 clean:
-	rm -f $(BUILDDIR)/$(PROJECT)
+	$(RM) $(PROG)
+	$(RM) $(OBJS)
 
 run: all
-	./$(BUILDDIR)/$(PROJECT)
+	./$(PROG)
 
 # file rules
 
-$(BUILDDIR)/%: $(SRCDIR)/%.c
+$(PROG): $(OBJS)
 	mkdir -p $(@D)
-	$(CC) -o $@ $< $(CFLAGS)
+	$(CC) -o $@ $^ $(CFLAGS)
+
+# note: using implicit rule for .o object files

@@ -1,4 +1,4 @@
-# gtk-demo.c
+# gtk-demo
 
 Just messing around with GTK+ 2.
 
