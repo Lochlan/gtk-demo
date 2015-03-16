@@ -11,6 +11,9 @@ all: $(BUILDDIR)/$(PROJECT)
 clean:
 	rm -f $(BUILDDIR)/$(PROJECT)
 
+run: all
+	./$(BUILDDIR)/$(PROJECT)
+
 # file rules
 
 $(BUILDDIR)/%: $(SRCDIR)/%.c
