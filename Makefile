@@ -17,9 +17,10 @@ PROG = $(BUILDDIR)/$(PROJECT)
 all: $(PROG)
 
 clean:
-	$(RM) $(PROG)
-	$(RM) $(OBJS)
-	$(RM) $(MAKEDEPS)
+	$(RM)\
+		$(PROG)\
+		$(shell find $(SRCDIR) -type f -name '*.d')\
+		$(shell find $(SRCDIR) -type f -name '*.o')\
 
 run: all
 	./$(PROG)
