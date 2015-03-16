@@ -1,8 +1,18 @@
 PROJECT = gtk-demo
 
-all:
-	mkdir -p bin
-	gcc src/$(PROJECT).c -o bin/$(PROJECT) `pkg-config --cflags --libs gtk+-2.0`
+CC = gcc
+CFLAGS = $(shell pkg-config --cflags --libs gtk+-2.0)
+
+SRCDIR = src
+BUILDDIR = bin
+
+all: $(BUILDDIR)/$(PROJECT)
 
 clean:
-	rm -f bin/$(PROJECT)
+	rm -f $(BUILDDIR)/$(PROJECT)
+
+# file rules
+
+$(BUILDDIR)/%: $(SRCDIR)/%.c
+	mkdir -p $(@D)
+	$(CC) -o $@ $< $(CFLAGS)
