@@ -1,7 +1,8 @@
 PROJECT = gtk-demo
 
 all:
-	gcc $(PROJECT).c -o $(PROJECT) `pkg-config --cflags --libs gtk+-2.0`
+	mkdir -p bin
+	gcc src/$(PROJECT).c -o bin/$(PROJECT) `pkg-config --cflags --libs gtk+-2.0`
 
 clean:
-	rm -f $(PROJECT)
+	rm -f bin/$(PROJECT)
