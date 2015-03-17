@@ -1,12 +1,13 @@
 #include <gtk/gtk.h>
 #include "menu.h"
+#include "menu/file/open.h"
 #include "menu/help/about.h"
 #include "shared.h"
 
 static GtkItemFactoryEntry menu_items[] = {
     { "/_File", NULL, NULL, 0, "<Branch>" },
     { "/File/_New", "<control>N", hello, 0, "<StockItem>", GTK_STOCK_NEW },
-    { "/File/_Open", "<control>O", hello, 0, "<StockItem>", GTK_STOCK_OPEN },
+    { "/File/_Open", "<control>O", menu_file_open, 0, "<StockItem>", GTK_STOCK_OPEN },
     { "/File/_Save", "<control>S", hello, 0, "<StockItem>", GTK_STOCK_SAVE },
     { "/File/Save _As", NULL, NULL, 0, "<Item>" },
     { "/File/sep1", NULL, NULL, 0, "<Separator>" },
