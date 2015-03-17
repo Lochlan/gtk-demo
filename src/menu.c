@@ -1,5 +1,6 @@
 #include <gtk/gtk.h>
 #include "menu.h"
+#include "menu/help/about.h"
 #include "shared.h"
 
 static GtkItemFactoryEntry menu_items[] = {
@@ -12,7 +13,7 @@ static GtkItemFactoryEntry menu_items[] = {
     { "/File/_Quit", "<CTRL>Q", gtk_main_quit, 0, "<StockItem>", GTK_STOCK_QUIT },
 
     { "/_Help", NULL, NULL, 0, "<Branch>" },
-    { "/_Help/About", NULL, NULL, 0, "<Item>" },
+    { "/_Help/About", NULL, menu_help_about, 0, "<Item>" },
 };
 
 static gint nmenu_items = sizeof (menu_items) / sizeof (menu_items[0]);
