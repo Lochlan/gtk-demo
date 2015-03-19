@@ -26,15 +26,17 @@ brew install pkg-config # used by makefile
 brew install Caskroom/cask/xquartz # used by GTK
 brew install gtk+
 
+# make sure that cairo can find xcb-shm
+echo "export PKG_CONFIG_PATH=/usr/X11/lib/pkgconfig" >> ~/.bash_profile
+
 # build
 make
 ```
 
-Note that you will only be able to build and run the application from XQuartz ("X11").
-
-Export `PKG_CONFIG_PATH` to enable building (but not running) using the login shell
+Note that you will only be able to run the application from X11/XQuartz.  Executing the binary from a non-X11 shell will require the `DISPLAY` environment variable.  To get the correct value open the X11 terminal and run the following command:
 
 ```bash
-# make sure that cairo can find xcb-shm
-echo "export PKG_CONFIG_PATH=/usr/X11/lib/pkgconfig" >> ~/.bash_profile
+echo "export DISPLAY=$DISPLAY" >> ~/.bash_profile
 ```
+
+Set the `PKG_CONFIG_PATH` environment variable to enable building (but not running) using the login shell
